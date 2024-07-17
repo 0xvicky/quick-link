@@ -1,12 +1,12 @@
 import {Schema, models, model} from "mongoose";
 
 const LinkSchema = new Schema({
-  longURL: {
+  longUrl: {
     type: String,
     unique: [true, "Short Link already generated"],
     required: [true, "Long Link Required"]
   },
-  shortURL: {
+  shortUrl: {
     type: String
   },
   siteName: {

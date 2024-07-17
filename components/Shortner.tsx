@@ -19,7 +19,8 @@ const Shortner = () => {
         siteName: urlInfo.siteName
       })
     };
-    const data = await fetch("", options);
+    const res = await fetch("api/genLink", options);
+    const data = await res.json();
     console.log(data);
   };
   return (
