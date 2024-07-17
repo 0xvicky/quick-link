@@ -1,5 +1,5 @@
 import {Schema, models, model} from "mongoose";
-
+import Url from "./linkSchema";
 const UserSchema = new Schema({
   username: {
     type: String,
@@ -17,7 +17,13 @@ const UserSchema = new Schema({
   },
   image: {
     type: String
-  }
+  },
+  urls: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: Url
+    }
+  ]
 });
 
 const user = models.User || model("User", UserSchema);

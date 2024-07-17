@@ -6,7 +6,8 @@ import {sha256} from "js-sha256";
 export const POST = async (req: NextRequest, res: NextResponse) => {
   //fetch urlInfo from client side
   const {longUrl, siteName} = await req.json();
-
+  const origin = req.nextUrl.origin;
+  console.log(origin);
   //connect DB
   await connectDB();
 
@@ -46,5 +47,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   //return the data with 201 res
 
-  return NextResponse.json({msg: "URL generated ✅", url: hash}, {status: 201});
+  return NextResponse.json(
+    {msg: "URL generated ✅", url: `${origin}/${hash}`},
+    {status: 201}
+  );
 };
