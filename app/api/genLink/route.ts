@@ -2,12 +2,15 @@ import {NextRequest, NextResponse} from "next/server";
 import {connectDB} from "@/utils/config/dbConfig";
 import Url from "@/models/linkSchema";
 import {sha256} from "js-sha256";
+import {getToken} from "next-auth/jwt";
+import User from "@/models/userSchema";
 
 export const POST = async (req: NextRequest, res: NextResponse) => {
   //fetch urlInfo from client side
   const {longUrl, siteName} = await req.json();
   const origin = req.nextUrl.origin;
-  console.log(origin);
+  // console.log(origin);
+  const jwtToken = await getToken({req});
   //connect DB
   await connectDB();
 
@@ -41,10 +44,14 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     shortUrl: hash,
     siteName
   });
-
+  console.log(newUrl);
   //store the url object in db
   await newUrl.save();
 
+  //push the object id into the user DB
+  const user = await User.findOne({_id: jwtToken});
+  user.urls = [...user.urls, newUrl._id];
+  await user.save();
   //return the data with 201 res
 
   return NextResponse.json(

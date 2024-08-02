@@ -7,6 +7,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   const {username, email, password, confirmPassword, image} = await req.json();
   await connectDB();
   console.log("bakcend");
+  console.log(req.headers);
 
   try {
     //checks if user exist or not
@@ -28,7 +29,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       username,
       email,
       password: encPass,
-      image
+      image,
+      urls: []
     });
 
     //save the user

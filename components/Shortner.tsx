@@ -24,7 +24,7 @@ const Shortner = () => {
     console.log(data);
   };
   return (
-    <div className='flex-grow'>
+    <div className='mt-48'>
       <form
         onSubmit={handleSubmit}
         className='flex flex-col items-center justify-center space-y-10 h-full'>

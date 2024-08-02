@@ -1,11 +1,13 @@
 "use client";
-import {Navbar, Shortner} from "@/components";
 
+import Link from "next/link";
+import {Shortner} from "@/components";
 export default function Home() {
   return (
-    <main className='h-screen flex flex-col '>
-      <Navbar />
-      <Shortner />
-    </main>
+    <div className=' min-h-full'>
+      <Link href='/'>
+        <Shortner />
+      </Link>
+    </div>
   );
 }
