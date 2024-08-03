@@ -7,4 +7,5 @@ export interface urlData {
   _id: string;
   siteName: string;
   shortUrl: string;
+  createdAt: string;
 }

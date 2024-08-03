@@ -1,5 +1,6 @@
 "use client";
 import {useState} from "react";
+import toast from "react-hot-toast";
 
 const Shortner = () => {
   const [urlInfo, setUrlInfo] = useState({
@@ -8,9 +9,13 @@ const Shortner = () => {
   });
 
   const handleSubmit = async (e: any) => {
-    console.log("sdf");
     e.preventDefault();
-    console.log("tringer");
+    if (urlInfo.longUrl === "" || urlInfo.siteName === "") {
+      toast.error("Empty fields are not allowed");
+      return;
+    }
+    toast.loading("Generating...");
+
     const options = {
       method: "POST",
       headers: {
@@ -22,8 +27,23 @@ const Shortner = () => {
       })
     };
     const res = await fetch("api/genLink", options);
-    const data = await res.json();
-    console.log(data);
+
+    // console.log(res);
+    toast.dismiss();
+    if (res.status === 201) {
+      const data = await res.json();
+      toast.success(`URL generated`);
+    } else {
+      toast.error("Failed to generate link");
+    }
+    // console.log(data);
+
+    // if (data.status === 201) {
+    // toast.dismiss();
+    //   toast.success(`Url Generated:${data?.url}`);
+    // } else {
+    //   toast.error("Failed to generate link");
+    // }
   };
   return (
     <div className='mt-48 space-y-10'>
@@ -46,7 +66,7 @@ const Shortner = () => {
           required
         />
         <button
-          className=' bg-gradient-to-r from-orange-800 via-red-500 to-yellow-500 px-2 p-2 rounded-md'
+          className=' bg-gradient-to-r from-orange-800 via-red-500 to-yellow-500 px-2 p-2 rounded-md hover:outline transition-all duration-200 hover:outline-orange-800'
           type='submit'
           onClick={handleSubmit}>
           Generate Short Linkx
