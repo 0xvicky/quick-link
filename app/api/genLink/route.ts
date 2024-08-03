@@ -41,7 +41,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   //create a new Url object
   const newUrl = new Url({
     longUrl,
-    shortUrl: hash,
+    hash,
+    shortUrl: `${origin}/${hash}`,
     siteName
   });
   console.log(newUrl);

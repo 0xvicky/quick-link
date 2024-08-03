@@ -53,53 +53,51 @@ const Auth = () => {
         {isSignUp && (
           <div className='flex flex-col gap-4'>
             <label className='flex flex-col'>
-              <span className='font-satoshi font-semibold text-base text-gray-700'>
+              <span className='font-satoshi font-semibold text-base  text-white'>
                 Username
               </span>
               <input
                 type='text'
                 placeholder='Username'
                 required
-                className='p-2 border rounded-md'
+                className='p-2 border rounded-md text-white bg-transparent'
                 onChange={e => setFormData({...formData, username: e.target.value})}
               />
             </label>
           </div>
         )}
-        <label className='flex flex-col'>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>
-            Email
-          </span>
+        <label className='flex flex-col '>
+          <span className='font-satoshi font-semibold text-base  text-white'>Email</span>
           <input
             type='text'
             placeholder='Enter Email'
             required
-            className='p-2 border rounded-md'
+            className='p-2 border rounded-md bg-transparent text-white'
             onChange={e => setFormData({...formData, email: e.target.value})}
           />
         </label>
         <label className='flex flex-col'>
-          <span className='font-satoshi font-semibold text-base text-gray-700'>
+          <span className='font-satoshi font-semibold text-base  text-white'>
             Password
           </span>
           <input
             type='password'
             placeholder='Enter Password'
             required
-            className='p-2 border rounded-md'
+            className='p-2 border rounded-md bg-transparent text-white'
             onChange={e => setFormData({...formData, password: e.target.value})}
           />
         </label>
         {isSignUp && (
           <label className='flex flex-col'>
-            <span className='font-satoshi font-semibold text-base text-gray-700'>
+            <span className='font-satoshi font-semibold text-base  text-white'>
               Confirm Password
             </span>
             <input
               type='password'
               placeholder='Confirm Password'
               required
-              className='p-2 border rounded-md'
+              className='p-2 border rounded-md bg-transparent text-white'
               onChange={e => setFormData({...formData, confirmPassword: e.target.value})}
             />
           </label>

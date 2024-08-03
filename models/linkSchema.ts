@@ -6,6 +6,9 @@ const LinkSchema = new Schema({
     unique: [true, "Short Link already generated"],
     required: [true, "Long Link Required"]
   },
+  hash: {
+    type: String
+  },
   shortUrl: {
     type: String
   },

@@ -4,6 +4,7 @@ import Url from "@/models/linkSchema";
 
 // Route handler
 export async function GET(req: Request, {params}: {params: {hash: string}}) {
+  console.log(params);
   const {hash} = params; // Extract the dynamic parameter
   // console.log(req);
   // console.log(params);
@@ -12,7 +13,7 @@ export async function GET(req: Request, {params}: {params: {hash: string}}) {
 
   try {
     // Find if shortUrl, exists or not, if not then throw an error
-    const urlInfo = await Url.findOne({shortUrl: hash});
+    const urlInfo = await Url.findOne({hash: hash});
     // Perform the redirection or return the long URL
     console.log(urlInfo);
     if (!urlInfo) {
