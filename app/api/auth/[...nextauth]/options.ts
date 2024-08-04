@@ -45,6 +45,7 @@ export const authOptions: NextAuthOptions = {
       // console.log("1234");
       if (user) {
         token._id = user._id?.toString();
+        token.username = user?.username?.toString();
       }
       console.log(token);
       return token;
@@ -53,6 +54,7 @@ export const authOptions: NextAuthOptions = {
       // console.log("3456");
       if (token) {
         session.user._id = token._id;
+        session.user.username = token.username;
       }
       console.log(session);
       return session;

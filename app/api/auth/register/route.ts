@@ -6,7 +6,7 @@ import {NextRequest, NextResponse} from "next/server";
 export const POST = async (req: NextRequest, res: NextResponse) => {
   const {username, email, password, confirmPassword, image} = await req.json();
   await connectDB();
-  console.log("bakcend");
+  // console.log("bakcend");
   console.log(req.headers);
 
   try {

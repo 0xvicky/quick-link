@@ -11,6 +11,7 @@
   "dependencies": {
     "@chakra-ui/input": "^2.1.2",
     "@types/bcrypt": "^5.0.2",
+    "base64-encode-file": "^1.0.7",
     "bcrypt": "^5.1.1",
     "date-fns": "^3.6.0",
     "js-sha256": "^0.11.0",

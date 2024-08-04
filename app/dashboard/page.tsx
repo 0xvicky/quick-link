@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   console.log(urlData);
   return (
-    <div className='p-4'>
+    <div className='p-4 '>
       <Link
         href='/'
         className='text-white text-xl'>
@@ -73,12 +73,12 @@ const Dashboard = () => {
               </th>
               <th
                 scope='col'
-                className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell'>
                 Created On
               </th>
               <th
                 scope='col'
-                className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hidden md:table-cell'>
                 Created At
               </th>
               <th
@@ -93,11 +93,11 @@ const Dashboard = () => {
               <tr
                 key={item?.url._id}
                 className='hover:bg-gradient-to-r from-gray-900 to-gray-700 hover:text-white cursor-pointer'>
-                <td className='px-6 py-4 whitespace-nowrap text-sm font-medium '>
+                <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
                   {index + 1}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm '>{item?.siteName}</td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm text-blue-500  '>
+                <td className='px-6 py-4 whitespace-nowrap text-sm'>{item?.siteName}</td>
+                <td className='px-6 py-4 whitespace-nowrap text-sm text-blue-500'>
                   <a
                     href={item?.url.shortUrl}
                     target='_blank'
@@ -105,13 +105,13 @@ const Dashboard = () => {
                     {item?.url.shortUrl}
                   </a>
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm '>
+                <td className='px-6 py-4 whitespace-nowrap text-sm hidden md:table-cell'>
                   {format(new Date(item?.createdAt), "dd-MM-yyyy")}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm '>
+                <td className='px-6 py-4 whitespace-nowrap text-sm hidden md:table-cell'>
                   {format(new Date(item?.createdAt), "HH:mm:ss")}
                 </td>
-                <td className='px-6 py-4 whitespace-nowrap text-sm '>
+                <td className='px-6 py-4 whitespace-nowrap text-sm'>
                   <CopyToClipboard text={item?.url.shortUrl}>
                     <FaCopy
                       fontSize={20}
@@ -126,7 +126,7 @@ const Dashboard = () => {
           </tbody>
         </table>
       ) : (
-        <div className='flex justify-center mt-64 text-white text-5xl font-bold'>
+        <div className='flex justify-center mt-64 bg-gradient-to-r from-orange-800 via-red-500 to-yellow-500 bg-clip-text text-transparent animate-pulse text-5xl font-bold'>
           No Urls Shortened
         </div>
       )}

@@ -22,7 +22,11 @@ const Shortner = () => {
               <div className='ml-3 flex-1'>
                 <p className='text-sm font-medium text-white'>Url Generated🥳</p>
                 <p className='mt-1 text-sm font-semibold flex items-center gap-x-4 bg-gradient-to-r from-orange-800 via-red-500 to-yellow-500 bg-clip-text text-transparent'>
-                  {shortUrl}
+                  <a
+                    href={shortUrl}
+                    target='_blank'>
+                    {shortUrl}
+                  </a>
                   <CopyToClipboard text={shortUrl}>
                     <FaCopy className='text-orange-600 cursor-pointer' />
                   </CopyToClipboard>
@@ -45,24 +49,27 @@ const Shortner = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (urlInfo.longUrl === "" || urlInfo.siteName === "") {
-      toast.error("Empty fields are not allowed");
-      return;
-    }
-    toast.loading("Generating...");
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        longUrl: urlInfo.longUrl,
-        siteName: urlInfo.siteName
-      })
-    };
-
     try {
+      if (urlInfo.longUrl === "" || urlInfo.siteName === "") {
+        toast.error("Empty fields are not allowed");
+        return;
+      }
+      if (urlInfo.siteName.length > 25) {
+        throw toast.error("Please enter name smaller than 25 characters");
+      }
+      toast.loading("Generating...");
+
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          longUrl: urlInfo.longUrl,
+          siteName: urlInfo.siteName
+        })
+      };
+
       const res = await fetch("api/genLink", options);
 
       // console.log(res);
