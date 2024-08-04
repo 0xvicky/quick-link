@@ -36,7 +36,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       return NextResponse.json({msg: "You already shortened this link"}, {status: 400});
     }
 
-    newUrl = {...urlInfo, siteName}; //newUrl value set from urlInfo
+    newUrl = urlInfo; //newUrl value set from urlInfo
   } else {
     //if longUrl never gets shortened then we'll hash and store in DB.
     //hash the longUrl using nanoid to generate the shorter text
@@ -76,8 +76,5 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
   console.log(user);
 
-  return NextResponse.json(
-    {msg: "URL generated ✅", url: `${newUrl}${user}`},
-    {status: 201}
-  );
+  return NextResponse.json({url: newUrl}, {status: 201});
 };

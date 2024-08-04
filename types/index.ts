@@ -12,4 +12,5 @@ export interface urlData {
 export interface userUrl {
   objectId: string;
   createdAt: Date;
+  siteName: string;
 }

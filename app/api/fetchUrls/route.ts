@@ -16,10 +16,13 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   // Fetch URLs associated with the URL IDs
   const urlPromises = urlObjects.map(async (item: userUrl) => {
     const urlRes = await Url.findOne({_id: item.objectId});
+    console.log("=====");
+    console.log(urlRes);
 
     return {
       url: urlRes,
-      createdAt: item.createdAt
+      createdAt: item.createdAt,
+      siteName: item.siteName
     };
   });
   const urls = await Promise.all(urlPromises);
