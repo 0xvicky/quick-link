@@ -1,4 +1,5 @@
 import {Schema, models, model} from "mongoose";
+import User from "./userSchema";
 
 const LinkSchema = new Schema({
   longUrl: {
@@ -11,15 +12,6 @@ const LinkSchema = new Schema({
   },
   shortUrl: {
     type: String
-  },
-  siteName: {
-    type: String,
-    required: [true, "Site Name Required"],
-    unique: [true, "Site Name already generated"]
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now()
   }
 });
 

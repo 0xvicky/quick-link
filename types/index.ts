@@ -4,8 +4,12 @@ export interface CustomButtonProps {
 }
 
 export interface urlData {
-  _id: string;
+  url: {_id: string; shortUrl: string};
+  createdAt: Date;
   siteName: string;
-  shortUrl: string;
-  createdAt: string;
+}
+
+export interface userUrl {
+  objectId: string;
+  createdAt: Date;
 }

@@ -20,8 +20,17 @@ const UserSchema = new Schema({
   },
   urls: [
     {
-      type: Schema.Types.ObjectId,
-      ref: Url
+      objectId: {
+        type: Schema.Types.ObjectId,
+        ref: "Link"
+      },
+      createdAt: {
+        type: Date,
+        default: new Date()
+      },
+      siteName: {
+        type: String
+      }
     }
   ]
 });

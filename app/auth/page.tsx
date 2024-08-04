@@ -1,6 +1,8 @@
 "use client";
 import React, {useState} from "react";
 import {signIn} from "next-auth/react";
+import toast from "react-hot-toast";
+import {useRouter} from "next/navigation";
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -11,10 +13,13 @@ const Auth = () => {
     confirmPassword: ""
   });
 
+  const router = useRouter();
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (isSignUp) {
+      toast.loading("Creating account...");
       const options = {
         method: "POST",
         header: {
@@ -34,11 +39,25 @@ const Auth = () => {
           console.log(data);
           if (res.status === 201) {
             await signIn("credentials", formData);
+            router.push("/");
           }
         })
       );
     } else {
-      await signIn("credentials", formData);
+      toast.loading("Logging in...");
+      console.log(formData);
+      const res = await signIn("credentials", {
+        ...formData,
+        redirect: false
+      });
+      toast.dismiss();
+      if (res?.status === 200) {
+        toast.success("Logged in successfully");
+        router.push("/");
+      } else {
+        console.log(res);
+        toast.error(`${res?.error}`);
+      }
     }
   };
 

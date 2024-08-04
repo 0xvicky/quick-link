@@ -3,17 +3,25 @@ import {connectDB} from "@/utils/config/dbConfig";
 import User from "@/models/userSchema";
 import Url from "@/models/linkSchema";
 import {getToken} from "next-auth/jwt";
+import {userUrl} from "@/types";
 export const POST = async (req: NextRequest, res: NextResponse) => {
   const jwtToken = await getToken({req});
 
   //connect DB
   await connectDB();
 
-  const urlIds = (await User.findOne({_id: jwtToken}))?.urls || [];
+  const urlObjects = (await User.findOne({_id: jwtToken}))?.urls || [];
   //   console.log(urlIds);
 
   // Fetch URLs associated with the URL IDs
-  const urlPromises = urlIds.map(async (id: any) => Url.findOne({_id: id}));
+  const urlPromises = urlObjects.map(async (item: userUrl) => {
+    const urlRes = await Url.findOne({_id: item.objectId});
+
+    return {
+      url: urlRes,
+      createdAt: item.createdAt
+    };
+  });
   const urls = await Promise.all(urlPromises);
   return NextResponse.json({urls}, {status: 200});
 };

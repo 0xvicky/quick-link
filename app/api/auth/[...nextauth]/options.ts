@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import {connectDB} from "@/utils/config/dbConfig";
 import UserModel from "@/models/userSchema";
+import {NextResponse} from "next/server";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -14,6 +15,7 @@ export const authOptions: NextAuthOptions = {
         password: {label: "Password", type: "password"}
       },
       async authorize(credentials: any): Promise<any> {
+        console.log("this is meail");
         console.log(credentials.email);
         await connectDB();
         try {
@@ -21,13 +23,14 @@ export const authOptions: NextAuthOptions = {
           console.log(user);
           if (!user) {
             console.log("No user with this email");
-            throw new Error("No user found with this email !");
+            throw "No user found with this email !";
+            // return NextResponse.json({msg: "No user with this email"}, {status: 400});
           }
           const isPassword = await bcrypt.compare(credentials.password, user.password);
 
           if (!isPassword) {
             console.log("Password not correct");
-            throw new Error("Password is incorrect!");
+            throw "Password is incorrect!";
           }
           console.log(user);
           return user;
@@ -61,5 +64,6 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt"
   },
+
   secret: process.env.NEXTAUTH_SECRET
 };

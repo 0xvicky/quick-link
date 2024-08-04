@@ -26,24 +26,22 @@ const Shortner = () => {
         siteName: urlInfo.siteName
       })
     };
-    const res = await fetch("api/genLink", options);
 
-    // console.log(res);
-    toast.dismiss();
-    if (res.status === 201) {
+    try {
+      const res = await fetch("api/genLink", options);
+
+      // console.log(res);
+      toast.dismiss();
       const data = await res.json();
-      toast.success(`URL generated`);
-    } else {
-      toast.error("Failed to generate link");
+      if (res.status === 201) {
+        toast.success(`URL generated`);
+      } else {
+        toast.error(data?.msg);
+      }
+      console.log(data.url);
+    } catch (error) {
+      console.log(`Error occured while generating url:${error}`);
     }
-    // console.log(data);
-
-    // if (data.status === 201) {
-    // toast.dismiss();
-    //   toast.success(`Url Generated:${data?.url}`);
-    // } else {
-    //   toast.error("Failed to generate link");
-    // }
   };
   return (
     <div className='mt-48 space-y-10'>

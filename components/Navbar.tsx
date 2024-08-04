@@ -4,14 +4,17 @@ import {signOut} from "next-auth/react";
 import Button from "./Button";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
+import {useParams} from "next/navigation";
 
 const Navbar = () => {
   // console.log(window);
   const [isAuth, setIsAuth] = useState(false);
 
+  const params = useParams();
+
   useEffect(() => {
     setIsAuth(window.location.href.includes("/auth"));
-  }, []);
+  }, [params]);
 
   const handleSignOut = async () => {
     await signOut();
