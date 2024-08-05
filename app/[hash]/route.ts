@@ -6,9 +6,7 @@ import Url from "@/models/linkSchema";
 export async function GET(req: Request, {params}: {params: {hash: string}}) {
   console.log(params);
   const {hash} = params; // Extract the dynamic parameter
-  // console.log(req);
-  // console.log(params);
-  // console.log(hash);
+
   await connectDB();
 
   try {

@@ -72,17 +72,13 @@ const Shortner = () => {
 
       const res = await fetch("api/genLink", options);
 
-      // console.log(res);
       toast.dismiss();
       const data = await res.json();
       if (res.status === 201) {
-        // toast.success(`URL generated`);
-        // console.log(data.url);
         displaySnackbar(data.url.shortUrl);
       } else {
         toast.error(data?.msg);
       }
-      // console.log(data.url);
     } catch (error) {
       console.log(`Error occured while generating url:${error}`);
     } finally {

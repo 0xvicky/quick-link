@@ -13,13 +13,13 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     //checks if user exist or not
     const isUser = await User.findOne({email});
     if (isUser) {
-      console.log("User already exists");
+      // console.log("User already exists");
       return NextResponse.json({msg: "User already exists"}, {status: 404});
     }
     //checks if password and confirmPassword is same or not
 
     if (password !== confirmPassword) {
-      console.log("Password didn't match");
+      // console.log("Password didn't match");
       return NextResponse.json({msg: "Wrong Password"}, {status: 400});
     }
     //hash the password
@@ -35,7 +35,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
     //save the user
     await newUser.save();
-    console.log(newUser);
+    // console.log(newUser);
     newUser.password = undefined;
     //send the user information to client
     return NextResponse.json({msg: "User saved"}, {status: 201});

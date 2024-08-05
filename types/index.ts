@@ -14,3 +14,7 @@ export interface userUrl {
   createdAt: Date;
   siteName: string;
 }
+
+export interface HamburgerProps {
+  signOut: () => void;
+}

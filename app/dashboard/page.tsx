@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [urlData, setUrlData] = useState<urlData[]>([]);
   const [isLoader, setIsLoader] = useState<boolean>(false);
 
+  //dummy data
   const data = [
     {id: 1, siteName: "Example Site", shortUrl: "https://short.ly/abc123"},
     {id: 2, siteName: "Another Site", shortUrl: "https://short.ly/def456"},
@@ -53,12 +54,12 @@ const Dashboard = () => {
           />
         </div>
       ) : urlData[0] !== null && urlData.length > 0 ? (
-        <table className='min-w-full divide-y divide-gray-200 mt-4 bg-gray-900'>
+        <table className='md:min-w-full divide-y  divide-gray-200 mt-4 bg-gray-900'>
           <thead className='bg-gray-900'>
             <tr>
               <th
                 scope='col'
-                className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                className='px-6 py-3 text-left hidden md:block text-xs font-medium text-gray-500 uppercase tracking-wider'>
                 S.No
               </th>
               <th
@@ -93,7 +94,7 @@ const Dashboard = () => {
               <tr
                 key={item?.url._id}
                 className='hover:bg-gradient-to-r from-gray-900 to-gray-700 hover:text-white cursor-pointer'>
-                <td className='px-6 py-4 whitespace-nowrap text-sm font-medium'>
+                <td className='px-6 py-4 hidden md:block whitespace-nowrap text-sm font-medium'>
                   {index + 1}
                 </td>
                 <td className='px-6 py-4 whitespace-nowrap text-sm'>{item?.siteName}</td>

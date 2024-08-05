@@ -95,7 +95,7 @@ const Auth = () => {
       <div className='flex items-start gap-x-16 '>
         <form
           onSubmit={handleSubmit}
-          className='mt-8 w-[700px] max-w-md flex flex-col gap-5 '>
+          className='mt-8 md:w-[700px] max-w-md flex flex-col gap-5 mb-12'>
           {isSignUp && (
             <div className='flex flex-col gap-4'>
               <label className='flex flex-col'>
@@ -182,35 +182,6 @@ const Auth = () => {
             )}
           </div>
         </form>
-        {false && (
-          <div className='flex flex-col items-center justify-start mt-16 group'>
-            {preview ? (
-              <img
-                src={preview as string}
-                alt='Profile'
-                className='h-24 w-24 flex items-center justify-center rounded-full object-cover cursor-pointer'
-                onClick={() => {
-                  setPreview(null);
-                }}
-              />
-            ) : (
-              <label
-                htmlFor='profilePic'
-                className='relative cursor-pointer mb-4'>
-                <div className='border border-white p-2 rounded-full h-24 w-24 flex items-center justify-center bg-transparent hover:bg-gray-300 hover:text-gray-900 transition-all duration-200'>
-                  <BiImageAdd className='text-orange-500 group-hover:text-gray-900 text-4xl' />
-                </div>
-                <input
-                  id='profilePic'
-                  type='file'
-                  accept='image/*'
-                  className='hidden'
-                  onChange={handleImage}
-                />
-              </label>
-            )}
-          </div>
-        )}
       </div>
     </section>
   );

@@ -57,15 +57,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     await newUrl.save();
   }
 
-  //check if siteName already exists, if yes same case
-  // const isSiteName = await Url.findOne({siteName});
-  // if (isSiteName && isSiteName.userEmail === user.email) {
-  //   return NextResponse.json(
-  //     {msg: "Site name already exists for this URL"},
-  //     {status: 400}
-  //   );
-  // }
-
   //push the object id into the user DB
   user.urls = [
     ...user.urls,
@@ -74,7 +65,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
   await user.save();
   //return the data with 201 res
 
-  console.log(user);
+  // console.log(user);
 
   return NextResponse.json({url: newUrl}, {status: 201});
 };
